@@ -4,22 +4,52 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.Id;
 
-import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
-@Entity
+@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private String id;
 
     private String nickname;
 
-    @OneToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE})
     private List<Book> books;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
+
+    public void addBook(Book book) {
+        if(this.books == null)
+            this.books = new ArrayList<>();
+
+        this.books.add(book);
+    }
 }

@@ -3,11 +3,9 @@ package com.breuse.alexis.mybookshelf.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.Id;
 
-import javax.persistence.*;
 import java.util.List;
-
-@Entity
 
 @NoArgsConstructor
 @Getter
@@ -15,18 +13,13 @@ import java.util.List;
 public class Book {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-    @OneToOne
-    private User user;
+    private String id;
 
     private String name;
 
-    @ElementCollection
     private List<String> authors;
 
-    public long getId() {
+    public String getId() {
         return id;
     }
 
